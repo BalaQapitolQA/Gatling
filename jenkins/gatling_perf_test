@@ -1,0 +1,15 @@
+import java.lang.*;
+
+node {
+
+    stage('compile') {
+        def mvnHome = tool name: 'maven3.5.4', type: 'hudson.tasks.Maven$MavenInstallation'
+
+        sh "$mvnHome/bin/mvn -e -f $maven_dir/pom.xml clean"
+    }
+
+    stage('Run') {
+        def mavencmd = "mvn -f /usr/local/maven_project/pom.xml clean gatling:execute -Dgatling.simulationClass=com.gatling.TrelloSimulation"
+    }
+
+ }
