@@ -2,15 +2,15 @@ import java.lang.*;
 
 node {
 
+    stage('intialize') {
+        checkout scm
+    }
+
     stage('Run') {
         def mavencmd = "mvn -f /usr/local/maven_project/pom.xml clean gatling:execute -Dgatling.simulationClass=com.gatling.simulation.TrelloSimulation -DnumberOfUsersMax=$numberOfUsersMax"
     }
 
     stage('Generating Gatling Results') {
-
-       sh "pwd"
-       sh "mkdir simulations"
-
        gatlingArchive()
     }
 
