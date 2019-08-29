@@ -8,15 +8,10 @@ node {
 
     stage('Generating Gatling Results') {
 
-        publishHTML([
-                                allowMissing         : false,
-                                alwaysLinkToLastBuild: false,
-                                keepAll              : true,
-                                reportDir            : "./target/gatling/results/",
-                                reportFiles          : 'index.html',
-                                reportName           : 'Performance Test Report'
-                        ])
-        gatlingArchive()
+       sh "pwd"
+       sh "mkdir simulations"
+
+       gatlingArchive()
     }
 
  }
