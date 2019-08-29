@@ -106,6 +106,31 @@
         <groupId>io.gatling</groupId>
         <artifactId>gatling-maven-plugin</artifactId>
         <version>${gatling-plugin.version}</version>
+        <configuration>
+          <configFolder>src/test/resources</configFolder>
+          <dataFolder>src/test/resources/data</dataFolder>
+          <resultsFolder>target/gatling/results</resultsFolder>
+          <bodiesFolder>src/test/resources/bodies</bodiesFolder>
+          <simulationsFolder>src/test/scala</simulationsFolder>
+          <runDescription>Gatling performance tests</runDescription>
+          <runMultipleSimulations>true</runMultipleSimulations>
+          <jvmArgs>
+            <jvmArg>-Xmx1500m</jvmArg>
+            <jvmArg>-Dgatling.data.writers.0=graphite</jvmArg>
+            <jvmArg>-Dgatling.data.writers.1=file</jvmArg>
+            <jvmArg>-Dgatling.data.writers.2=console</jvmArg>
+            <jvmArg>-Dgatling.data.graphite.rootPathPrefix=gatling.${artifactId}.${env}</jvmArg>
+            <jvmArg>-Dgatling.data.graphite.host=localhost</jvmArg>
+            <jvmArg>-Dgatling.data.graphite.port=8094</jvmArg>
+            <jvmArg>-Dgatling.data.graphite.protocol=tcp</jvmArg>
+            <jvmArg>-Dgatling.data.graphite.light=true</jvmArg>
+            <jvmArg>-Dgatling.charting.indicators.percentile1=50</jvmArg>
+            <jvmArg>-Dgatling.charting.indicators.percentile2=75</jvmArg>
+            <jvmArg>-Dgatling.charting.indicators.percentile3=90</jvmArg>
+            <jvmArg>-Dgatling.charting.indicators.percentile4=95</jvmArg>
+            <jvmArg>-Dgatling.charting.indicators.percentile5=99</jvmArg>
+          </jvmArgs>
+        </configuration>
       </plugin>
     </plugins>
   </build>
